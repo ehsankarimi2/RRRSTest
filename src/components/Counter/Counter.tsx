@@ -1,8 +1,8 @@
 import React, {useState} from 'react';
 import {connect} from "react-redux";
-import {AppActions, AppState} from "../../store/types";
+import {AppState, SagaActions} from "../../store/types";
 import {Dispatch} from "redux";
-import {decrement, increment} from "../../store/actions";
+import {decrementSaga, incrementSaga} from "../../store/actions";
 
 type Props = {
     count: number
@@ -40,10 +40,10 @@ const mapStateToProps = (state: AppState, ownProps: Props) => {
     };
 };
 
-const mapDispatchToProps = (dispatch: Dispatch<AppActions>) => {
+const mapDispatchToProps = (dispatch: Dispatch<SagaActions>) => {
     return {
-        onIncrement: (count: number) => dispatch(increment(count)),
-        onDecrement: (count: number) => dispatch(decrement(count))
+        onIncrement: (count: number) => dispatch(incrementSaga(count)),
+        onDecrement: (count: number) => dispatch(decrementSaga(count))
     }
 };
 

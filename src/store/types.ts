@@ -1,18 +1,39 @@
 import {Action} from "redux";
 
-export const INCREMENT = 'INCREMENT';
-export const DECREMENT = 'DECREMENT';
-
 export type AppState = {
     readonly count: number
 }
 
-interface IIncrementAction extends Action<typeof INCREMENT> {
+
+export enum SagaActionTypes {
+    INCREMENT = '@@counterSaga/INCREMENT',
+    DECREMENT = '@@counterSaga/DECREMENT'
+}
+
+export enum ReducerActionTypes {
+    INCREMENT = '@@counterReducer/INCREMENT',
+    DECREMENT = '@@counterReducer/DECREMENT'
+}
+
+interface IIncrementSagaAction extends Action<SagaActionTypes.INCREMENT> {
     count: number
 }
 
-interface IDecrementAction extends Action<typeof DECREMENT> {
+interface IDecrementSagaAction extends Action<SagaActionTypes.DECREMENT> {
     count: number
 }
 
-export type AppActions = IIncrementAction | IDecrementAction;
+export type SagaActions = IIncrementSagaAction | IDecrementSagaAction;
+
+
+interface IIncrementReducerAction extends Action<ReducerActionTypes.INCREMENT> {
+    count: number
+}
+
+interface IDecrementReducerAction extends Action<ReducerActionTypes.DECREMENT> {
+    count: number
+}
+
+export type ReducerActions = IIncrementReducerAction | IDecrementReducerAction;
+
+

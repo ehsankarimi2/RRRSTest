@@ -1,15 +1,29 @@
-import {AppActions, DECREMENT, INCREMENT} from "./types";
+import {ReducerActions, ReducerActionTypes, SagaActions, SagaActionTypes} from "./types";
 
-export function increment(count: number): AppActions {
+export const incrementReducer = (count: number) : ReducerActions => {
     return {
-        type: INCREMENT,
+        type: ReducerActionTypes.INCREMENT,
         count: count
     }
-}
+};
 
-export function decrement(count: number): AppActions {
+export const decrementReducer = (count: number) : ReducerActions => {
     return {
-        type: DECREMENT,
+        type: ReducerActionTypes.DECREMENT,
         count: count
     }
-}
+};
+
+export const incrementSaga = (count: number) : SagaActions => {
+    return {
+        type: SagaActionTypes.INCREMENT,
+        count: count
+    }
+};
+
+export const decrementSaga = (count: number) : SagaActions => {
+    return {
+        type: SagaActionTypes.DECREMENT,
+        count: count
+    }
+};

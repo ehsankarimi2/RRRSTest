@@ -1,18 +1,18 @@
-import {AppActions, AppState} from "./types";
+import {AppState, ReducerActions, ReducerActionTypes} from "./types";
 import {Reducer} from "redux";
 
 const initialState: AppState = {
     count: 0
 };
 
-const reducer: Reducer<AppState, AppActions> = (state = initialState, action) => {
+const reducer: Reducer<AppState, ReducerActions> = (state = initialState, action) => {
     switch (action.type) {
-        case "INCREMENT":
+        case ReducerActionTypes.INCREMENT:
             return {
                 ...state,
                 count: state.count + action.count
             };
-        case "DECREMENT":
+        case ReducerActionTypes.DECREMENT:
             return {
                 ...state,
                 count: state.count - action.count
