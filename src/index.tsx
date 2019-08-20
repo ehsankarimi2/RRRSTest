@@ -5,10 +5,15 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 import {Provider} from "react-redux";
 import {BrowserRouter} from "react-router-dom";
-import {createStore} from "redux";
+import {applyMiddleware, compose, createStore} from "redux";
 import reducer from "./store/reducer";
+import createSagaMiddleware from 'redux-saga';
 
-const store = createStore(reducer);
+// @ts-ignore
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+
+const sagaMiddleware = createSagaMiddleware();
+const store = createStore(reducer, composeEnhancers(applyMiddleware(sagaMiddleware)));
 
 const app = (
     <Provider store={store}>

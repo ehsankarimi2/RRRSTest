@@ -1,7 +1,8 @@
 import React, {useState} from 'react';
 import {connect} from "react-redux";
-import {AppActions, AppState, DECREMENT, INCREMENT} from "../../store/types";
+import {AppActions, AppState} from "../../store/types";
 import {Dispatch} from "redux";
+import {decrement, increment} from "../../store/actions";
 
 type Props = {
     count: number
@@ -10,21 +11,21 @@ type Props = {
 };
 
 const Counter: React.FC<Props> = props => {
-    let [count, setCount] = useState(0);
+    let [inputValue, setInputValue] = useState(0);
 
 
     function onInputChangeHandler(event: React.ChangeEvent<HTMLInputElement>) {
         if (isNaN(+event.target.value)) {
             return;
         }
-        setCount(+event.target.value);
+        setInputValue(+event.target.value);
     }
 
     return (
         <>
-            <input onChange={onInputChangeHandler} value={count}/>
-            <button onClick={() => props.onIncrement(count)}>Increment</button>
-            <button onClick={() => props.onDecrement(count)}>Decrement</button>
+            <input onChange={onInputChangeHandler} />
+            <button onClick={() => props.onIncrement(inputValue)}>Increment</button>
+            <button onClick={() => props.onDecrement(inputValue)}>Decrement</button>
             <br/>
             <p>Count : {props.count} </p>
         </>
@@ -41,8 +42,8 @@ const mapStateToProps = (state: AppState, ownProps: Props) => {
 
 const mapDispatchToProps = (dispatch: Dispatch<AppActions>) => {
     return {
-        onIncrement: (count: number) => dispatch({type: INCREMENT, count: count}),
-        onDecrement: (count: number) => dispatch({type: DECREMENT, count: count})
+        onIncrement: (count: number) => dispatch(increment(count)),
+        onDecrement: (count: number) => dispatch(decrement(count))
     }
 };
 
